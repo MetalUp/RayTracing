@@ -23,14 +23,26 @@ Partial Public Class RayTracerForm
     End Sub
 
     Private Sub RayTracerForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-        Me.Show()
-        Dim rayTracer As Renderer = New Renderer(imageWidth, imageHeight, Sub(ByVal x As Integer, ByVal y As Integer, ByVal color As Drawing.Color)
-                                                                              bitmap.SetPixel(x, y, color)
-                                                                              If x = 0 Then pictureBox.Refresh()
-                                                                          End Sub)
-        rayTracer.Render(StandardScenes.DefaultScene)
+        Show()
+        Dim rayTracer As Renderer = New Renderer(imageWidth, imageHeight)
+        Dim pixels As Color() = rayTracer.Render(StandardScenes.DefaultScene)
+        Dim image As Bitmap = New Bitmap(imageWidth, imageHeight)
+
+        For x As Integer = 0 To imageWidth - 1
+
+            For y As Integer = 0 To imageHeight - 1
+                Dim c As Color = pixels(y * imageWidth + x)
+                image.SetPixel(x, y, ToDrawingColor(c))
+            Next
+        Next
+
+        pictureBox.Image = image
         pictureBox.Invalidate()
     End Sub
+
+    Private Function ToDrawingColor(ByVal c As Color) As System.Drawing.Color
+        Return System.Drawing.Color.FromArgb(c.RedByte(), c.GreenByte(), c.BlueByte())
+    End Function
 
     <STAThread>
     Private Shared Sub Main()

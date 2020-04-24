@@ -38,15 +38,20 @@
         Return New Color(v1.R - v2.R, v1.G - v2.G, v1.B - v2.B)
     End Operator
 
-    Public Function Legalize(ByVal d As Double) As Double
-        Return If(d > 1, 1, d) ' means: 'if d > 1 return 1, else return d'
+    Private Function ToByte(ByVal d As Double) As Byte
+        Return Convert.ToByte(Math.Min(1, d) * 255)
     End Function
 
+    Public Function RedByte() As Byte
+        Return ToByte(R)
+    End Function
 
-    'Use of namespace to qualify which Color class is being used:
-    'this one, or the standard System.Drawing Color class
-    Friend Function ToDrawingColor() As Drawing.Color
-        Return Drawing.Color.FromArgb(Legalize(R) * 255, Legalize(G) * 255, Legalize(B) * 255)
+    Public Function GreenByte() As Byte
+        Return ToByte(G)
+    End Function
+
+    Public Function BlueByte() As Byte
+        Return ToByte(B)
     End Function
 End Class
 

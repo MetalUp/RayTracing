@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace RayTracer
@@ -30,16 +31,27 @@ namespace RayTracer
 
         private void RayTracerForm_Load(object sender, EventArgs e)
         {
-            this.Show();
-            Renderer rayTracer = new Renderer(imageWidth, imageHeight, (int x, int y, System.Drawing.Color color) =>
+            Show();
+            Renderer rayTracer = new Renderer(imageWidth, imageHeight);
+            Color[] pixels = rayTracer.Render(StandardScenes.DefaultScene);
+            Bitmap image = new Bitmap(imageWidth, imageHeight);
+            for (int x = 0; x < imageWidth; x++)
             {
-                bitmap.SetPixel(x, y, color);
-                if (x == 0) pictureBox.Refresh();
-            });
-            rayTracer.Render(StandardScenes.DefaultScene);
+                for (int y = 0; y < imageHeight; y++)
+                {
+                    Color c = pixels[y * imageWidth + x];
+                    image.SetPixel(x,y,ToDrawingColor(c));
+                }
+            }
+            pictureBox.Image = image;
             pictureBox.Invalidate();
-
         }
+
+        private System.Drawing.Color ToDrawingColor(Color c)
+        {
+            return System.Drawing.Color.FromArgb(c.RedByte(), c.GreenByte(), c.BlueByte());
+        }
+
 
         [STAThread]
         static void Main()

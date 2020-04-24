@@ -1,6 +1,4 @@
-﻿using System.Windows.Media.Media3D;
-
-namespace RayTracer
+﻿namespace RayTracer
 {
     public static class StandardScenes
     {

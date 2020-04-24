@@ -9,12 +9,9 @@ namespace RayTracer {
         private int screenHeight;
         private const int MaxDepth = 5;
 
-        public Action<int, int, System.Drawing.Color> setPixel;
-
-        public Renderer(int screenWidth, int screenHeight, Action<int,int, System.Drawing.Color> setPixel) {
+        public Renderer(int screenWidth, int screenHeight) {
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
-            this.setPixel = setPixel;
         }
 
         private IEnumerable<Intersection> Intersections(Ray ray, Scene scene)
@@ -87,18 +84,18 @@ namespace RayTracer {
             return (camera.Forward + RecenterX(x)*camera.Right + RecenterY(y)* camera.Up).Normalized();
         }
 
-        public void Render(Scene scene) {
+        public Color[] Render(Scene scene) {
+            Color[] image = new Color[screenWidth * screenHeight];
             for (int y = 0; y < screenHeight; y++)
             {
                 for (int x = 0; x < screenWidth; x++)
                 {
-                    //if (x == 300 && y == 300) Debugger.Break();
-                    Color color = TraceRay(new Ray(scene.Camera.Pos,GetPoint(x, y, scene.Camera) ), scene, 0);
-                    setPixel(x, y, color.ToDrawingColor());
+                    int index = y * screenWidth + x;
+                    image[index] = TraceRay(new Ray(scene.Camera.Pos, GetPoint(x, y, scene.Camera)), scene, 0);
                 }
             }
+            return image;
         }
     }
 
-    public delegate void Action<T,U,V>(T t, U u, V v);
 }

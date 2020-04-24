@@ -38,16 +38,24 @@ namespace RayTracer
             return new Color(v1.R - v2.R, v1.G - v2.G, v1.B - v2.B);
         }
 
-        public double Legalize(double d)
+        private byte ToByte(double d)
         {
-            return d > 1 ? 1 : d; // means: 'if d > 1 return 1, else return d'
+            return Convert.ToByte(Math.Min(1,d)*255);
         }
 
-        //Use of namespace to qualify which Color class is being used:
-        //this one, or the standard System.Drawing Color class
-        internal System.Drawing.Color ToDrawingColor()
+        public byte RedByte()
         {
-            return System.Drawing.Color.FromArgb((int)(Legalize(R) * 255), (int)(Legalize(G) * 255), (int)(Legalize(B) * 255));
+            return ToByte(R);
+        }
+
+        public byte GreenByte()
+        {
+            return ToByte(G);
+        }
+
+        public byte BlueByte()
+        {
+            return ToByte(B);
         }
     }
 }

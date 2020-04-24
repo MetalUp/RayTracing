@@ -2,12 +2,10 @@ Public Class Renderer
     Private screenWidth As Integer
     Private screenHeight As Integer
     Private Const MaxDepth As Integer = 5
-    Public setPixel As Action(Of Integer, Integer, Drawing.Color)
 
-    Public Sub New(ByVal screenWidth As Integer, ByVal screenHeight As Integer, ByVal setPixel As Action(Of Integer, Integer, Drawing.Color))
+    Public Sub New(ByVal screenWidth As Integer, ByVal screenHeight As Integer)
         Me.screenWidth = screenWidth
         Me.screenHeight = screenHeight
-        Me.setPixel = setPixel
     End Sub
 
     Private Function Intersections(ByVal ray As Ray, ByVal scene As Scene) As IEnumerable(Of Intersection)
@@ -80,16 +78,17 @@ Public Class Renderer
         Return (camera.Forward + RecenterX(x) * camera.Right + RecenterY(y) * camera.Up).Normalized()
     End Function
 
-    Public Sub Render(ByVal scene As Scene)
+    Public Function Render(ByVal scene As Scene) As Color()
+        Dim image As Color() = New Color(screenWidth * screenHeight - 1) {}
+
         For y As Integer = 0 To screenHeight - 1
 
             For x As Integer = 0 To screenWidth - 1
-                'if (x == 300 && y == 300) Debugger.Break();
-                Dim color As Color = Me.TraceRay(New Ray(scene.Camera.Pos, GetPoint(x, y, scene.Camera)), scene, 0)
-                setPixel(x, y, color.ToDrawingColor())
+                Dim index As Integer = y * screenWidth + x
+                image(index) = TraceRay(New Ray(scene.Camera.Pos, GetPoint(x, y, scene.Camera)), scene, 0)
             Next
         Next
-    End Sub
+        Return image
+    End Function
 End Class
 
-Public Delegate Sub Action(Of T, U, V)(ByVal t As T, ByVal u As U, ByVal v As V)
