@@ -15,10 +15,9 @@ Partial Public Class RayTracerForm
         pictureBox.Dock = DockStyle.Fill
         pictureBox.SizeMode = PictureBoxSizeMode.StretchImage
         pictureBox.Image = bitmap
-        ClientSize = New Drawing.Size(imageWidth, imageHeight + 24)
+        ClientSize = New Size(imageWidth, imageHeight + 24)
         Controls.Add(pictureBox)
         Text = "Ray Tracer"
-        'Load += AddressOf RayTracerForm_Load
         Show()
     End Sub
 
@@ -40,8 +39,8 @@ Partial Public Class RayTracerForm
         pictureBox.Invalidate()
     End Sub
 
-    Private Function ToDrawingColor(ByVal c As Color) As System.Drawing.Color
-        Return System.Drawing.Color.FromArgb(c.RedByte(), c.GreenByte(), c.BlueByte())
+    Private Function ToDrawingColor(ByVal c As Color) As Drawing.Color
+        Return Drawing.Color.FromArgb(c.RedByte(), c.GreenByte(), c.BlueByte())
     End Function
 
     <STAThread>

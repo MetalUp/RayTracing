@@ -1,3 +1,5 @@
+Imports System.Linq
+
 Public Class Renderer
     Private screenWidth As Integer
     Private screenHeight As Integer

@@ -1,4 +1,6 @@
-﻿Public Class Scene
+﻿Imports System.Linq
+
+Public Class Scene
 
     Public Property Things As IThing()
 
