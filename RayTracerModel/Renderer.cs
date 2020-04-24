@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 namespace RayTracer {
-    public class RayTracer {
+    public class Renderer {
 
         private int screenWidth;
         private int screenHeight;
@@ -11,7 +11,7 @@ namespace RayTracer {
 
         public Action<int, int, System.Drawing.Color> setPixel;
 
-        public RayTracer(int screenWidth, int screenHeight, Action<int,int, System.Drawing.Color> setPixel) {
+        public Renderer(int screenWidth, int screenHeight, Action<int,int, System.Drawing.Color> setPixel) {
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
             this.setPixel = setPixel;

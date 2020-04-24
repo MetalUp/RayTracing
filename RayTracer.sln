@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracerFixture", "RayTrac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracerWindowsUI", "RayTracerUI\RayTracerWindowsUI.csproj", "{E6EC0AFB-93E4-47B0-8732-9E626DDCA395}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "VectorTest\Test.csproj", "{C38DA7D0-B4FC-488D-9631-6DB566C7D5A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracerTest", "VectorTest\RayTracerTest.csproj", "{C38DA7D0-B4FC-488D-9631-6DB566C7D5A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -64,7 +64,6 @@ namespace RayTracer
             return X.GetHashCode() + Y.GetHashCode() + Z.GetHashCode();
         }
 
-        #region operators
         public static Vector3 operator +(Vector3 a, Vector3 b)
         {
             return a.Plus(b);
@@ -88,6 +87,5 @@ namespace RayTracer
         {
             return b.ScalarMultiply(a);
         }
-        #endregion
     }
 }

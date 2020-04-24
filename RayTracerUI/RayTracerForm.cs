@@ -8,19 +8,19 @@ namespace RayTracer
     {
         Bitmap bitmap;
         PictureBox pictureBox;
-        const int width = 600;
-        const int height = 600;
+        const int imageWidth = 600;
+        const int imageHeight = 600;
 
         public RayTracerForm()
         {
-            bitmap = new Bitmap(width, height);
+            bitmap = new Bitmap(imageWidth, imageHeight);
 
             pictureBox = new PictureBox();
             pictureBox.Dock = DockStyle.Fill;
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Image = bitmap;
 
-            ClientSize = new System.Drawing.Size(width, height + 24);
+            ClientSize = new System.Drawing.Size(imageWidth, imageHeight + 24);
             Controls.Add(pictureBox);
             Text = "Ray Tracer";
             Load += RayTracerForm_Load;
@@ -31,7 +31,7 @@ namespace RayTracer
         private void RayTracerForm_Load(object sender, EventArgs e)
         {
             this.Show();
-            RayTracer rayTracer = new RayTracer(width, height, (int x, int y, System.Drawing.Color color) =>
+            Renderer rayTracer = new Renderer(imageWidth, imageHeight, (int x, int y, System.Drawing.Color color) =>
             {
                 bitmap.SetPixel(x, y, color);
                 if (x == 0) pictureBox.Refresh();

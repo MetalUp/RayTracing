@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RayTracer;
 
-namespace VectorTest
+namespace RayTracerTest
 {
     [TestClass]
     public class Vector3Tests
