@@ -116,9 +116,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RayTracerModelVB\RayTracerModelVB.vbproj">
+    <ProjectReference Include="..\RayTracerModelVB\RayTracerModel.vbproj">
       <Project>{db914029-c2dd-4151-a5a2-f09aaff1e506}</Project>
-      <Name>RayTracerModelVB</Name>
+      <Name>RayTracerModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

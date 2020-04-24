@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RayTracerModelVB", "RayTracerModelVB\RayTracerModelVB.vbproj", "{DB914029-C2DD-4151-A5A2-F09AAFF1E506}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RayTracerModel", "RayTracerModelVB\RayTracerModel.vbproj", "{DB914029-C2DD-4151-A5A2-F09AAFF1E506}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RayTracerFixtureVB", "RayTracerFixtureVB\RayTracerFixtureVB.vbproj", "{BF312F49-A675-46BD-BA27-D68C18BD4B08}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RayTracerFixture", "RayTracerFixtureVB\RayTracerFixture.vbproj", "{BF312F49-A675-46BD-BA27-D68C18BD4B08}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RayTracerTestVB", "RayTracerTestVB\RayTracerTestVB.vbproj", "{7DE8543D-E489-4A89-B631-1BB114F5597B}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RayTracerTest", "RayTracerTestVB\RayTracerTest.vbproj", "{7DE8543D-E489-4A89-B631-1BB114F5597B}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RayTracerWindowsUI_VB", "RayTracerWindowsUI_VB\RayTracerWindowsUI_VB.vbproj", "{506E24CB-4A7E-4BC4-BF51-626884777200}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RayTracerWindowsUI", "RayTracerWindowsUI_VB\RayTracerWindowsUI.vbproj", "{506E24CB-4A7E-4BC4-BF51-626884777200}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

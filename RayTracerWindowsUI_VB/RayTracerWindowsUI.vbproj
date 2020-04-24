@@ -4,31 +4,34 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BF312F49-A675-46BD-BA27-D68C18BD4B08}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>RayTracerFixtureVB</RootNamespace>
-    <AssemblyName>RayTracerFixtureVB</AssemblyName>
+    <ProjectGuid>{506E24CB-4A7E-4BC4-BF51-626884777200}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>RayTracerWindowsUI_VB.My.MyApplication</StartupObject>
+    <RootNamespace>RayTracerWindowsUI_VB</RootNamespace>
+    <AssemblyName>RayTracerWindowsUI_VB</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Windows</MyType>
+    <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>RayTracerFixtureVB.xml</DocumentationFile>
+    <DocumentationFile>RayTracerWindowsUI_VB.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>RayTracerFixtureVB.xml</DocumentationFile>
+    <DocumentationFile>RayTracerWindowsUI_VB.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -46,6 +49,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -58,12 +64,21 @@
     <Import Include="System.Collections" />
     <Import Include="System.Collections.Generic" />
     <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
     <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
     <Import Include="System.Linq" />
     <Import Include="System.Xml.Linq" />
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RayTracerForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RayTracerForm.Designer.vb">
+      <DependentUpon>RayTracerForm.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -98,17 +113,16 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StandardScenes.vb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="StandardSurfaces.vb" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RayTracerModelVB\RayTracerModelVB.vbproj">
+    <ProjectReference Include="..\RayTracerFixtureVB\RayTracerFixture.vbproj">
+      <Project>{bf312f49-a675-46bd-ba27-d68c18bd4b08}</Project>
+      <Name>RayTracerFixture</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RayTracerModelVB\RayTracerModel.vbproj">
       <Project>{db914029-c2dd-4151-a5a2-f09aaff1e506}</Project>
-      <Name>RayTracerModelVB</Name>
+      <Name>RayTracerModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
