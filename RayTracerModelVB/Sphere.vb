@@ -1,19 +1,17 @@
 ﻿Public Class Sphere
-    Implements IThing
-
-    Public ReadOnly Property Surface As SurfaceTexture Implements IThing.Surface
+    Inherits Thing
 
     Public Property Centre As Vector3
 
     Public Property Radius As Double
 
     Public Sub New(ByVal centre As Vector3, ByVal radius As Double, ByVal surface As SurfaceTexture)
+        MyBase.New(surface)
         Me.Centre = centre
         Me.Radius = radius
-        Me.Surface = surface
     End Sub
 
-    Public Function CalculateIntersection(ByVal withRay As Ray) As Intersection Implements IThing.CalculateIntersection
+    Public Overrides Function CalculateIntersection(ByVal withRay As Ray) As Intersection
         Dim eo As Vector3 = Centre - withRay.Start
         Dim v As Double = eo.DotProduct(withRay.Dir)
         Dim dist As Double
@@ -29,7 +27,7 @@
         Return New Intersection(Me, withRay, dist)
     End Function
 
-    Public Function CalculateNormal(ByVal surfacePosition As Vector3) As Vector3 Implements IThing.CalculateNormal
+    Public Overrides Function CalculateNormal(ByVal surfacePosition As Vector3) As Vector3
         Return (surfacePosition - Centre).Normalized()
     End Function
 End Class

@@ -33,13 +33,13 @@ namespace RayTracer
         {
             Show();
             Renderer rayTracer = new Renderer(imageWidth, imageHeight);
-            Color[] pixels = rayTracer.Render(StandardScenes.DefaultScene);
+            Colour[] pixels = rayTracer.Render(StandardScenes.DefaultScene);
             Bitmap image = new Bitmap(imageWidth, imageHeight);
             for (int x = 0; x < imageWidth; x++)
             {
                 for (int y = 0; y < imageHeight; y++)
                 {
-                    Color c = pixels[y * imageWidth + x];
+                    Colour c = pixels[y * imageWidth + x];
                     image.SetPixel(x,y,ToDrawingColor(c));
                 }
             }
@@ -47,7 +47,7 @@ namespace RayTracer
             pictureBox.Invalidate();
         }
 
-        private System.Drawing.Color ToDrawingColor(Color c)
+        private System.Drawing.Color ToDrawingColor(Colour c)
         {
             return System.Drawing.Color.FromArgb(c.RedByte(), c.GreenByte(), c.BlueByte());
         }

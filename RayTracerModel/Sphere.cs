@@ -2,7 +2,7 @@
 
 namespace RayTracer
 {
-    public class Sphere : IThing
+    public class Sphere : Thing
     {
         public SurfaceTexture Surface { get; private set; }
         public Vector3 Centre { get; private set; }

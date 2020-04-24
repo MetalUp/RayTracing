@@ -30,16 +30,16 @@ namespace RayTracer {
             return isect.Dist;
         }
 
-        private Color TraceRay(Ray ray, Scene scene, int depth) {
+        private Colour TraceRay(Ray ray, Scene scene, int depth) {
             var isects = Intersections(ray, scene);
             Intersection isect = isects.FirstOrDefault();
             if (isect == null)
-                return Color.Background;
+                return Colour.Background;
             return Shade(isect, scene, depth);
         }
 
-        private Color GetNaturalColor(IThing thing, Vector3 pos, Vector3 norm, Vector3 rd, Scene scene) {
-            Color ret = new Color(0, 0, 0);
+        private Colour GetNaturalColor(Thing thing, Vector3 pos, Vector3 norm, Vector3 rd, Scene scene) {
+            Colour ret = new Colour(0, 0, 0);
             foreach (LightSource light in scene.Lights) {
                 Vector3 ldis = light.Pos- pos;
                 Vector3 livec = ldis.Normalized();
@@ -47,28 +47,28 @@ namespace RayTracer {
                 bool isInShadow = !((neatIsect > ldis.Length()) || (neatIsect == 0));
                 if (!isInShadow) {
                     double illum = livec.DotProduct(norm);
-                    Color lcolor = illum > 0 ? illum * light.Color : new Color(0, 0, 0);
+                    Colour lcolor = illum > 0 ? illum * light.Color : new Colour(0, 0, 0);
                     double specular = livec.DotProduct(rd.Normalized());
-                    Color scolor = specular > 0 ? Math.Pow(specular, thing.Surface.Roughness) * light.Color : new Color(0, 0, 0);
+                    Colour scolor = specular > 0 ? Math.Pow(specular, thing.Surface.Roughness) * light.Color : new Colour(0, 0, 0);
                     ret = ret +  (thing.Surface.Diffuse(pos) * lcolor) + (thing.Surface.Specular(pos) * scolor);
                 }
             }
             return ret;
         }
 
-        private Color GetReflectionColor(IThing thing, Vector3 pos, Vector3 norm, Vector3 rd, Scene scene, int depth) {
+        private Colour GetReflectionColor(Thing thing, Vector3 pos, Vector3 norm, Vector3 rd, Scene scene, int depth) {
             return thing.Surface.Reflect(pos) * TraceRay(new Ray( pos,  rd ), scene, depth + 1);
         }
 
-        private Color Shade(Intersection isect, Scene scene, int depth) {
+        private Colour Shade(Intersection isect, Scene scene, int depth) {
             var d = isect.Ray.Dir;
             var pos = isect.Dist * isect.Ray.Dir +  isect.Ray.Start;
             var normal = isect.Thing.CalculateNormal(pos);
             var reflectDir = d - 2 * normal.DotProduct(d) * normal;
-            Color ret = Color.DefaultColor;
+            Colour ret = Colour.DefaultColor;
             ret = ret + GetNaturalColor(isect.Thing, pos, normal, reflectDir, scene);
             if (depth >= MaxDepth) {
-                return ret + new Color(.5, .5, .5);
+                return ret + new Colour(.5, .5, .5);
             }
             return ret + GetReflectionColor(isect.Thing, pos + (.001 * reflectDir), normal, reflectDir, scene, depth);
         }
@@ -84,8 +84,8 @@ namespace RayTracer {
             return (camera.Forward + RecenterX(x)*camera.Right + RecenterY(y)* camera.Up).Normalized();
         }
 
-        public Color[] Render(Scene scene) {
-            Color[] image = new Color[screenWidth * screenHeight];
+        public Colour[] Render(Scene scene) {
+            Colour[] image = new Colour[screenWidth * screenHeight];
             for (int y = 0; y < screenHeight; y++)
             {
                 for (int x = 0; x < screenWidth; x++)
