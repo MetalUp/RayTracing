@@ -1,8 +1,6 @@
 using System.Linq;
 using System;
 using System.Collections.Generic;
-using System.Windows.Media.Media3D;
-using System.Diagnostics;
 
 namespace RayTracer {
     public class RayTracer {
@@ -43,19 +41,17 @@ namespace RayTracer {
             return Shade(isect, scene, depth);
         }
 
-        private Color GetNaturalColor(IThing thing, Vector3D pos, Vector3D norm, Vector3D rd, Scene scene) {
+        private Color GetNaturalColor(IThing thing, Vector3 pos, Vector3 norm, Vector3 rd, Scene scene) {
             Color ret = new Color(0, 0, 0);
             foreach (LightSource light in scene.Lights) {
-                Vector3D ldis = light.Pos- pos;
-                Vector3D livec = ldis;
-                livec.Normalize();
+                Vector3 ldis = light.Pos- pos;
+                Vector3 livec = ldis.Normalized();
                 double neatIsect = TestRay(new Ray(pos, livec), scene);
-                bool isInShadow = !((neatIsect > ldis.Length) || (neatIsect == 0));
+                bool isInShadow = !((neatIsect > ldis.Length()) || (neatIsect == 0));
                 if (!isInShadow) {
-                    double illum = Vector3D.DotProduct(livec, norm);
+                    double illum = livec.DotProduct(norm);
                     Color lcolor = illum > 0 ? illum * light.Color : new Color(0, 0, 0);
-                    rd.Normalize();
-                    double specular = Vector3D.DotProduct(livec, rd);
+                    double specular = livec.DotProduct(rd.Normalized());
                     Color scolor = specular > 0 ? Math.Pow(specular, thing.Surface.Roughness) * light.Color : new Color(0, 0, 0);
                     ret = ret +  (thing.Surface.Diffuse(pos) * lcolor) + (thing.Surface.Specular(pos) * scolor);
                 }
@@ -63,7 +59,7 @@ namespace RayTracer {
             return ret;
         }
 
-        private Color GetReflectionColor(IThing thing, Vector3D pos, Vector3D norm, Vector3D rd, Scene scene, int depth) {
+        private Color GetReflectionColor(IThing thing, Vector3 pos, Vector3 norm, Vector3 rd, Scene scene, int depth) {
             return thing.Surface.Reflect(pos) * TraceRay(new Ray( pos,  rd ), scene, depth + 1);
         }
 
@@ -71,7 +67,7 @@ namespace RayTracer {
             var d = isect.Ray.Dir;
             var pos = isect.Dist * isect.Ray.Dir +  isect.Ray.Start;
             var normal = isect.Thing.CalculateNormal(pos);
-            var reflectDir = d - 2 * Vector3D.DotProduct(normal, d) * normal;
+            var reflectDir = d - 2 * normal.DotProduct(d) * normal;
             Color ret = Color.DefaultColor;
             ret = ret + GetNaturalColor(isect.Thing, pos, normal, reflectDir, scene);
             if (depth >= MaxDepth) {
@@ -87,10 +83,8 @@ namespace RayTracer {
             return -(y - (screenHeight / 2.0)) / (2.0 * screenHeight);
         }
 
-        private Vector3D GetPoint(double x, double y, Camera camera) {
-            var result = camera.Forward + RecenterX(x)*camera.Right + RecenterY(y)* camera.Up;
-            result.Normalize();
-            return result;
+        private Vector3 GetPoint(double x, double y, Camera camera) {
+            return (camera.Forward + RecenterX(x)*camera.Right + RecenterY(y)* camera.Up).Normalized();
         }
 
         public void Render(Scene scene) {

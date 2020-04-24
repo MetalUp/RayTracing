@@ -16,8 +16,6 @@ namespace RayTracer
             B = double.Parse(nums[2]);
         }
 
-        //static methods or properties belong to the class, not an instance of it.
-        //They are invoked on the class itself e.g. myBackground = Color.Background
         public static readonly Color Background = new Color(0, 0, 0);
         public static readonly Color DefaultColor = new Color(0, 0, 0);
 

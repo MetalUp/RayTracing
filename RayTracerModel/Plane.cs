@@ -1,14 +1,12 @@
-﻿using System.Windows.Media.Media3D;
-
-namespace RayTracer
+﻿namespace RayTracer
 {
     public class Plane : IThing
     {
         public SurfaceTexture Surface { get; private set; }
-        public Vector3D Norm { get; private set; }
+        public Vector3 Norm { get; private set; }
         public double Offset { get; private set; }
 
-        public Plane(Vector3D norm, double offset, SurfaceTexture surface)
+        public Plane(Vector3 norm, double offset, SurfaceTexture surface)
         {
             Norm = norm;
             Offset = offset;
@@ -17,12 +15,12 @@ namespace RayTracer
 
         public  Intersection CalculateIntersection(Ray withRay)
         {
-            double denom = Vector3D.DotProduct(Norm, withRay.Dir);
+            double denom = Norm.DotProduct(withRay.Dir);
             if (denom > 0) return null;
-            return new Intersection(this, withRay, (Vector3D.DotProduct(Norm, withRay.Start) + Offset) / (-denom));
+            return new Intersection(this, withRay, (Norm.DotProduct(withRay.Start) + Offset) / (-denom));
         }
 
-        public  Vector3D CalculateNormal(Vector3D surfacePosition)
+        public  Vector3 CalculateNormal(Vector3 surfacePosition)
         {
             return Norm;
         }

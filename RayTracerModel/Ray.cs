@@ -1,12 +1,10 @@
-﻿using System.Windows.Media.Media3D;
-
-namespace RayTracer
+﻿namespace RayTracer
 {
     public class Ray
     {
-        public Vector3D Start { get; private set; }
-        public Vector3D Dir { get; private set; }
-        public Ray(Vector3D start, Vector3D dir)
+        public Vector3 Start { get; private set; }
+        public Vector3 Dir { get; private set; }
+        public Ray(Vector3 start, Vector3 dir)
         {
             Start = start;
             Dir = dir;

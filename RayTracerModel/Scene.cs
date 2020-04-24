@@ -18,8 +18,7 @@ namespace RayTracer
 
         public IEnumerable<Intersection> Intersect(Ray r)
         {
-            return from thing in Things
-                   select thing.CalculateIntersection(r);  //LINQ
+            return Things.Select(t => t.CalculateIntersection(r));
         }
     }
 }

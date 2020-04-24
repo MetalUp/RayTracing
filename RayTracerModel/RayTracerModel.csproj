@@ -61,6 +61,7 @@
     <Compile Include="IThing.cs" />
     <Compile Include="Sphere.cs" />
     <Compile Include="SurfaceTexture.cs" />
+    <Compile Include="Vector3.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
