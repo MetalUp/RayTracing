@@ -41,14 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
-    <Compile Include="Color.cs" />
+    <Compile Include="Colour.cs" />
     <Compile Include="Intersection.cs" />
     <Compile Include="LightSource.cs" />
     <Compile Include="Plane.cs" />
     <Compile Include="Ray.cs" />
     <Compile Include="Renderer.cs" />
     <Compile Include="Scene.cs" />
-    <Compile Include="IThing.cs" />
+    <Compile Include="Thing.cs" />
     <Compile Include="Sphere.cs" />
     <Compile Include="SurfaceTexture.cs" />
     <Compile Include="Vector3.cs" />
