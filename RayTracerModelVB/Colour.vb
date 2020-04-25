@@ -49,6 +49,14 @@
     Public Function BlueByte() As Byte
         Return ToByte(B)
     End Function
+
+#Region "Standard Colours"
+    Public Shared Red As Colour = New Colour(1, 0, 0)
+    Public Shared Green As Colour = New Colour(0, 1, 0)
+    Public Shared Blue As Colour = New Colour(0, 0, 1)
+    Public Shared Yellow As Colour = New Colour(1, 1, 0)
+    Public Shared White As Colour = New Colour(1, 1, 1)
+#End Region
 End Class
 
 

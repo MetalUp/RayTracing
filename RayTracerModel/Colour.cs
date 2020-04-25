@@ -57,5 +57,13 @@ namespace RayTracer
         {
             return ToByte(B);
         }
+
+        #region Standard Colours
+        public static Colour Red = new Colour(1, 0, 0);
+        public static Colour Green = new Colour(0, 1, 0);
+        public static Colour Blue = new Colour(0, 0, 1);
+        public static Colour Yellow = new Colour(1, 1, 0);
+        public static Colour White = new Colour(1, 1, 1);
+        #endregion
     }
 }

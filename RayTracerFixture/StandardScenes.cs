@@ -26,7 +26,11 @@
 
         private static Camera DefaultCamera()
         {
-            return new Camera(new Vector3(6, 1, 1), new Vector3(0, 0, 0));
+            //In this view:
+            //X axis is left-right (zero is centre-picture, +ve to the Right)
+            //Y axis is up-down (zero is the plane of the floor, positive upwards)
+            //Z axis is in/out of screen (zero is a few squares in from front, positive is further into screen)
+            return new Camera(new Vector3(0, 1, -6), new Vector3(0, 0, 0));
         }
     }
 }
