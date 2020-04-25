@@ -47,7 +47,6 @@
         Return X.GetHashCode() + Y.GetHashCode() + Z.GetHashCode()
     End Function
 
-
     Public Shared Operator +(a As Vector3, b As Vector3) As Vector3
         Return a.Plus(b)
     End Operator

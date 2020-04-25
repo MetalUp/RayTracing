@@ -21,15 +21,15 @@ Public Class Renderer
         Return isect.Dist
     End Function
 
-    Private Function TraceRay(ByVal ray As Ray, ByVal scene As Scene, ByVal depth As Integer) As Color
+    Private Function TraceRay(ByVal ray As Ray, ByVal scene As Scene, ByVal depth As Integer) As Colour
         Dim isects = Me.Intersections(ray, scene)
         Dim isect As Intersection = isects.FirstOrDefault()
-        If isect Is Nothing Then Return Color.Background
+        If isect Is Nothing Then Return Colour.Background
         Return Me.Shade(isect, scene, depth)
     End Function
 
-    Private Function GetNaturalColor(ByVal thing As IThing, ByVal pos As Vector3, ByVal norm As Vector3, ByVal rd As Vector3, ByVal scene As Scene) As Color
-        Dim ret As Color = New Color(0, 0, 0)
+    Private Function GetNaturalColor(ByVal thing As Thing, ByVal pos As Vector3, ByVal norm As Vector3, ByVal rd As Vector3, ByVal scene As Scene) As Colour
+        Dim ret As Colour = New Colour(0, 0, 0)
 
         For Each light As LightSource In scene.Lights
             Dim ldis As Vector3 = light.Pos - pos
@@ -39,9 +39,9 @@ Public Class Renderer
 
             If Not isInShadow Then
                 Dim illum As Double = livec.DotProduct(norm)
-                Dim lcolor As Color = If(illum > 0, illum * light.Color, New Color(0, 0, 0))
+                Dim lcolor As Colour = If(illum > 0, illum * light.Color, New Colour(0, 0, 0))
                 Dim specular As Double = livec.DotProduct(rd.Normalized())
-                Dim scolor As Color = If(specular > 0, Math.Pow(specular, thing.Surface.Roughness) * light.Color, New Color(0, 0, 0))
+                Dim scolor As Colour = If(specular > 0, Math.Pow(specular, thing.Surface.Roughness) * light.Color, New Colour(0, 0, 0))
                 ret = ret + thing.Surface.Diffuse(pos) * lcolor + thing.Surface.Specular(pos) * scolor
             End If
         Next
@@ -49,20 +49,20 @@ Public Class Renderer
         Return ret
     End Function
 
-    Private Function GetReflectionColor(ByVal thing As IThing, ByVal pos As Vector3, ByVal norm As Vector3, ByVal rd As Vector3, ByVal scene As Scene, ByVal depth As Integer) As Color
+    Private Function GetReflectionColor(ByVal thing As Thing, ByVal pos As Vector3, ByVal norm As Vector3, ByVal rd As Vector3, ByVal scene As Scene, ByVal depth As Integer) As Colour
         Return thing.Surface.Reflect(pos) * Me.TraceRay(New Ray(pos, rd), scene, depth + 1)
     End Function
 
-    Private Function Shade(ByVal isect As Intersection, ByVal scene As Scene, ByVal depth As Integer) As Color
+    Private Function Shade(ByVal isect As Intersection, ByVal scene As Scene, ByVal depth As Integer) As Colour
         Dim d = isect.Ray.Dir
         Dim pos = isect.Dist * isect.Ray.Dir + isect.Ray.Start
         Dim normal = isect.Thing.CalculateNormal(pos)
         Dim reflectDir = d - 2 * normal.DotProduct(d) * normal
-        Dim ret As Color = Color.DefaultColor
+        Dim ret As Colour = Colour.DefaultColor
         ret = ret + GetNaturalColor(isect.Thing, pos, normal, reflectDir, scene)
 
         If depth >= MaxDepth Then
-            Return ret + New Color(0.5, 0.5, 0.5)
+            Return ret + New Colour(0.5, 0.5, 0.5)
         End If
 
         Return ret + GetReflectionColor(isect.Thing, pos + 0.001 * reflectDir, normal, reflectDir, scene, depth)
@@ -80,8 +80,8 @@ Public Class Renderer
         Return (camera.Forward + RecenterX(x) * camera.Right + RecenterY(y) * camera.Up).Normalized()
     End Function
 
-    Public Function Render(ByVal scene As Scene) As Color()
-        Dim image As Color() = New Color(screenWidth * screenHeight - 1) {}
+    Public Function Render(ByVal scene As Scene) As Colour()
+        Dim image As Colour() = New Colour(screenWidth * screenHeight - 1) {}
 
         For y As Integer = 0 To screenHeight - 1
 

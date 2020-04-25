@@ -56,9 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.vb" />
-    <Compile Include="Color.vb" />
+    <Compile Include="Colour.vb" />
     <Compile Include="Intersection.vb" />
-    <Compile Include="IThing.vb" />
+    <Compile Include="Thing.vb" />
     <Compile Include="LightSource.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

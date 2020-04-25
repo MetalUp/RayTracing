@@ -2,13 +2,13 @@
 
 Public Class Scene
 
-    Public Property Things As IThing()
+    Public Property Things As Thing()
 
     Public Property Lights As LightSource()
 
     Public Property Camera As Camera
 
-    Public Sub New(ByVal things As IThing(), ByVal lights As LightSource(), ByVal camera As Camera)
+    Public Sub New(ByVal things As Thing(), ByVal lights As LightSource(), ByVal camera As Camera)
         Me.Things = things
         Me.Lights = lights
         Me.Camera = camera
