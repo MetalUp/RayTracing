@@ -14,12 +14,12 @@ namespace RayTracer {
             this.screenHeight = screenHeight;
         }
 
-        private IEnumerable<Intersection> Intersections(Ray ray, Scene scene)
+        private List<Intersection> Intersections(Ray ray, Scene scene)
         {
             return scene.Things
                         .Select(obj => obj.CalculateIntersection(ray))
                         .Where(inter => inter != null)
-                        .OrderBy(inter => inter.Dist);
+                        .OrderBy(inter => inter.Dist).ToList();
         }
 
         private double TestRay(Ray ray, Scene scene) {

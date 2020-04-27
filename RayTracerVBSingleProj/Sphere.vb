@@ -1,9 +1,9 @@
 ﻿Public Class Sphere
     Inherits Thing
 
-    Public Property Centre As Vector3
+    Public ReadOnly Property Centre As Vector3
 
-    Public Property Radius As Double
+    Public ReadOnly Property Radius As Double
 
     Public Sub New(ByVal centre As Vector3, ByVal radius As Double, ByVal surface As SurfaceTexture)
         MyBase.New(surface)

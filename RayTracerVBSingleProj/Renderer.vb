@@ -10,10 +10,10 @@ Public Class Renderer
         Me.screenHeight = screenHeight
     End Sub
 
-    Private Function Intersections(ByVal ray As Ray, ByVal scene As Scene) As IEnumerable(Of Intersection)
+    Private Function Intersections(ByVal ray As Ray, ByVal scene As Scene) As List(Of Intersection)
         Return scene.Things.Select(Function(obj) obj.CalculateIntersection(ray)).
                             Where(Function(inter) inter IsNot Nothing).
-                            OrderBy(Function(inter) inter.Dist)
+                            OrderBy(Function(inter) inter.Dist).ToList()
     End Function
 
     Private Function TestRay(ByVal ray As Ray, ByVal scene As Scene) As Double

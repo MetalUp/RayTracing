@@ -16,9 +16,9 @@ namespace RayTracer
             Camera = camera;
         }
 
-        public IEnumerable<Intersection> Intersect(Ray r)
+        public List<Intersection> Intersect(Ray r)
         {
-            return Things.Select(t => t.CalculateIntersection(r));
+            return Things.Select(t => t.CalculateIntersection(r)).ToList();
         }
     }
 }
