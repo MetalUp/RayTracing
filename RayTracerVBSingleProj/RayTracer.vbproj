@@ -4,31 +4,34 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DB914029-C2DD-4151-A5A2-F09AAFF1E506}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>RayTracerModelVB</RootNamespace>
-    <AssemblyName>RayTracerModelVB</AssemblyName>
+    <ProjectGuid>{506E24CB-4A7E-4BC4-BF51-626884777200}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>RayTracer.My.MyApplication</StartupObject>
+    <RootNamespace>RayTracer</RootNamespace>
+    <AssemblyName>RayTracer</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Windows</MyType>
+    <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>RayTracerModelVB.xml</DocumentationFile>
+    <DocumentationFile>RayTracer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>RayTracerModelVB.xml</DocumentationFile>
+    <DocumentationFile>RayTracer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -46,6 +49,11 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -53,13 +61,25 @@
     <Import Include="System.Collections" />
     <Import Include="System.Collections.Generic" />
     <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.vb" />
     <Compile Include="Colour.vb" />
+    <Compile Include="Floor.vb" />
     <Compile Include="Intersection.vb" />
-    <Compile Include="Thing.vb" />
     <Compile Include="LightSource.vb" />
+    <Compile Include="Ray.vb" />
+    <Compile Include="RayTracerForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RayTracerForm.Designer.vb">
+      <DependentUpon>RayTracerForm.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -75,12 +95,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Floor.vb" />
-    <Compile Include="Ray.vb" />
     <Compile Include="Renderer.vb" />
     <Compile Include="Scene.vb" />
     <Compile Include="Sphere.vb" />
+    <Compile Include="StandardScenes.vb" />
+    <Compile Include="StandardSurfaces.vb" />
     <Compile Include="SurfaceTexture.vb" />
+    <Compile Include="Thing.vb" />
+    <Compile Include="Vector3.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -100,9 +122,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Vector3.vb" />
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
