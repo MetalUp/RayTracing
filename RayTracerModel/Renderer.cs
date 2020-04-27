@@ -34,7 +34,7 @@ namespace RayTracer {
             var isects = Intersections(ray, scene);
             Intersection isect = isects.FirstOrDefault();
             if (isect == null)
-                return Colour.Background;
+                return Colour.Black;
             return Shade(isect, scene, depth);
         }
 
@@ -65,8 +65,7 @@ namespace RayTracer {
             var pos = isect.Dist * isect.Ray.Dir +  isect.Ray.Start;
             var normal = isect.Thing.CalculateNormal(pos);
             var reflectDir = d - 2 * normal.DotProduct(d) * normal;
-            Colour ret = Colour.DefaultColor;
-            ret = ret + GetNaturalColor(isect.Thing, pos, normal, reflectDir, scene);
+            Colour ret = Colour.Black + GetNaturalColor(isect.Thing, pos, normal, reflectDir, scene);
             if (depth >= MaxDepth) {
                 return ret + new Colour(.5, .5, .5);
             }

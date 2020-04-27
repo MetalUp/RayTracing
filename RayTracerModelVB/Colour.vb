@@ -15,9 +15,6 @@
         B = Double.Parse(nums(2))
     End Sub
 
-    Public Shared ReadOnly Background As Colour = New Colour(0, 0, 0)
-    Public Shared ReadOnly DefaultColor As Colour = New Colour(0, 0, 0)
-
     Public Shared Operator *(ByVal n As Double, ByVal v As Colour) As Colour
         Return New Colour(n * v.R, n * v.G, n * v.B)
     End Operator
@@ -56,7 +53,9 @@
     Public Shared Blue As Colour = New Colour(0, 0, 1)
     Public Shared Yellow As Colour = New Colour(1, 1, 0)
     Public Shared White As Colour = New Colour(1, 1, 1)
+    Public Shared Black As Colour = New Colour(0, 0, 0)
 #End Region
+
 End Class
 
 

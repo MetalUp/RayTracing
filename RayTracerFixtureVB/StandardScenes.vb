@@ -6,7 +6,7 @@ Public Module StandardScenes
 
     Private Function DefaultThings() As Thing()
         Return New Thing() {
-                    New Plane(New Vector3(0, 1, 0), 0, StandardSurfaces.CheckerBoard),
+                    New Floor(StandardSurfaces.CheckerBoard),
                     New Sphere(New Vector3(0, 0.5, 0), 0.5, StandardSurfaces.Shiny),
                     New Sphere(New Vector3(1, 1, 1), 0.2, StandardSurfaces.Matt),
                     New Sphere(New Vector3(-2, 1, -1), 1, StandardSurfaces.Shiny)}
@@ -21,10 +21,6 @@ Public Module StandardScenes
     End Function
 
     Private Function DefaultCamera() As Camera
-        'In this view:
-        'X axis Is left-right (zero Is centre-picture, +ve to the Right)
-        'Y axis Is up-down (zero Is the plane of the floor, positive upwards)
-        'Z axis Is in/out of screen (zero Is a few squares in from front, positive Is further into screen)
         Return New Camera(New Vector3(0, 1, -6), New Vector3(0, 0, 0))
     End Function
 End Module

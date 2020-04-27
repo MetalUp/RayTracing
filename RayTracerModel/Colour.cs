@@ -7,6 +7,7 @@ namespace RayTracer
         private double R, G, B; 
         //Constructors
         public Colour(double r, double g, double b) { R = r; G = g; B = b; }
+
         public Colour(string str)
         {
             string[] nums = str.Split(',');
@@ -16,8 +17,6 @@ namespace RayTracer
             B = double.Parse(nums[2]);
         }
 
-        public static readonly Colour Background = new Colour(0, 0, 0);
-        public static readonly Colour DefaultColor = new Colour(0, 0, 0);
 
         // 'operators' allow use of  +,-,*, instead of conventional method signatures
         // like 'add(...), subtract(...)'. They are static and hence must take two parameters
@@ -59,11 +58,12 @@ namespace RayTracer
         }
 
         #region Standard Colours
-        public static Colour Red = new Colour(1, 0, 0);
-        public static Colour Green = new Colour(0, 1, 0);
-        public static Colour Blue = new Colour(0, 0, 1);
-        public static Colour Yellow = new Colour(1, 1, 0);
-        public static Colour White = new Colour(1, 1, 1);
+        public static readonly Colour Red = new Colour(1, 0, 0);
+        public static readonly Colour Green = new Colour(0, 1, 0);
+        public static readonly Colour Blue = new Colour(0, 0, 1);
+        public static readonly Colour Yellow = new Colour(1, 1, 0);
+        public static readonly Colour White = new Colour(1, 1, 1);
+        public static readonly Colour Black = new Colour(0, 0, 0);
         #endregion
     }
 }

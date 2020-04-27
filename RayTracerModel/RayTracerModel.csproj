@@ -44,7 +44,7 @@
     <Compile Include="Colour.cs" />
     <Compile Include="Intersection.cs" />
     <Compile Include="LightSource.cs" />
-    <Compile Include="Plane.cs" />
+    <Compile Include="Floor.cs" />
     <Compile Include="Ray.cs" />
     <Compile Include="Renderer.cs" />
     <Compile Include="Scene.cs" />

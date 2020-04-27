@@ -24,7 +24,7 @@ Public Class Renderer
     Private Function TraceRay(ByVal ray As Ray, ByVal scene As Scene, ByVal depth As Integer) As Colour
         Dim isects = Me.Intersections(ray, scene)
         Dim isect As Intersection = isects.FirstOrDefault()
-        If isect Is Nothing Then Return Colour.Background
+        If isect Is Nothing Then Return Colour.Black
         Return Me.Shade(isect, scene, depth)
     End Function
 
@@ -58,9 +58,7 @@ Public Class Renderer
         Dim pos = isect.Dist * isect.Ray.Dir + isect.Ray.Start
         Dim normal = isect.Thing.CalculateNormal(pos)
         Dim reflectDir = d - 2 * normal.DotProduct(d) * normal
-        Dim ret As Colour = Colour.DefaultColor
-        ret = ret + GetNaturalColor(isect.Thing, pos, normal, reflectDir, scene)
-
+        Dim ret As Colour = Colour.Black + GetNaturalColor(isect.Thing, pos, normal, reflectDir, scene)
         If depth >= MaxDepth Then
             Return ret + New Colour(0.5, 0.5, 0.5)
         End If
