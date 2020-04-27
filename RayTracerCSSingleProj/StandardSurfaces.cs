@@ -2,9 +2,8 @@
 
 namespace RayTracer
 {
-    static class StandardSurfaces
+    public static class StandardSurfaces
     {
-        // Only works with X-Z plane.
         public static readonly SurfaceTexture CheckerBoard =
             new SurfaceTexture(
                 pos => ((Math.Floor(pos.Z) + Math.Floor(pos.X)) % 2 != 0)
