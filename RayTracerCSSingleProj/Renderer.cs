@@ -70,17 +70,6 @@ namespace RayTracer {
             return ret + GetReflectionColor(isect.Thing, pos + (.001 * reflectDir), normal, reflectDir, scene, depth);
         }
 
-        private double RecenterX(double x) {
-            return (x - (screenWidth / 2.0)) / (2.0 * screenWidth);
-        }
-        private double RecenterY(double y) {
-            return -(y - (screenHeight / 2.0)) / (2.0 * screenHeight);
-        }
-
-        private Vector3 GetPoint(double x, double y, Camera camera) {
-            return (camera.Forward + RecenterX(x)*camera.Right + RecenterY(y)* camera.Up).Normalized();
-        }
-
         public Colour[] Render(Scene scene) {
             Colour[] image = new Colour[screenWidth * screenHeight];
             for (int y = 0; y < screenHeight; y++)
@@ -88,7 +77,7 @@ namespace RayTracer {
                 for (int x = 0; x < screenWidth; x++)
                 {
                     int index = y * screenWidth + x;
-                    image[index] = TraceRay(new Ray(scene.Camera.Pos, GetPoint(x, y, scene.Camera)), scene, 0);
+                    image[index] = TraceRay(new Ray(scene.Camera.Pos, scene.Camera.GetPoint(x, y, screenWidth, screenHeight)), scene, 0);
                 }
             }
             return image;

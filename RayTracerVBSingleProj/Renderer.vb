@@ -66,18 +66,6 @@ Public Class Renderer
         Return ret + GetReflectionColor(isect.Thing, pos + 0.001 * reflectDir, normal, reflectDir, scene, depth)
     End Function
 
-    Private Function RecenterX(ByVal x As Double) As Double
-        Return (x - screenWidth / 2.0) / (2.0 * screenWidth)
-    End Function
-
-    Private Function RecenterY(ByVal y As Double) As Double
-        Return -(y - screenHeight / 2.0) / (2.0 * screenHeight)
-    End Function
-
-    Private Function GetPoint(ByVal x As Double, ByVal y As Double, ByVal camera As Camera) As Vector3
-        Return (camera.Forward + RecenterX(x) * camera.Right + RecenterY(y) * camera.Up).Normalized()
-    End Function
-
     Public Function Render(ByVal scene As Scene) As Colour()
         Dim image As Colour() = New Colour(screenWidth * screenHeight - 1) {}
 
@@ -85,7 +73,7 @@ Public Class Renderer
 
             For x As Integer = 0 To screenWidth - 1
                 Dim index As Integer = y * screenWidth + x
-                image(index) = TraceRay(New Ray(scene.Camera.Pos, GetPoint(x, y, scene.Camera)), scene, 0)
+                image(index) = TraceRay(New Ray(scene.Camera.Pos, scene.Camera.GetPoint(x, y, screenWidth, screenHeight)), scene, 0)
             Next
         Next
         Return image

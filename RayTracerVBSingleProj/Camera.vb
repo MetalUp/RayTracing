@@ -11,5 +11,17 @@
         Up = Forward.CrossProduct(Right).Normalized() * 1.5
         Me.Pos = pos
     End Sub
+
+    Private Function RecenterX(ByVal x As Double, ByVal screenWidth As Integer) As Double
+        Return (x - (screenWidth / 2.0)) / (2.0 * screenWidth)
+    End Function
+
+    Private Function RecenterY(ByVal y As Double, ByVal screenHeight As Integer) As Double
+        Return -(y - (screenHeight / 2.0)) / (2.0 * screenHeight)
+    End Function
+
+    Public Function GetPoint(ByVal x As Double, ByVal y As Double, ByVal screenWidth As Integer, ByVal screenHeight As Integer) As Vector3
+        Return (Forward + RecenterX(x, screenWidth) * Right + RecenterY(y, screenHeight) * Up).Normalized()
+    End Function
 End Class
 
