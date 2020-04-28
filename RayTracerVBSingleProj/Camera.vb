@@ -1,8 +1,8 @@
 ﻿Public Class Camera
     Public ReadOnly Pos As Vector3
-    Public ReadOnly Forward As Vector3
-    Public ReadOnly Up As Vector3
-    Public ReadOnly Right As Vector3
+    Private ReadOnly Forward As Vector3
+    Private ReadOnly Up As Vector3
+    Private ReadOnly Right As Vector3
 
     Public Sub New(ByVal pos As Vector3, ByVal lookAt As Vector3)
         Forward = (lookAt - pos).Normalized()
