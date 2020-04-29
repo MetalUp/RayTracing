@@ -2,11 +2,15 @@
 
 namespace RayTracer
 {
-    public class Colour
-    {
-        private double R, G, B; 
+public class Colour
+{
+    private double R, G, B; 
 
-        public Colour(double r, double g, double b) { R = r; G = g; B = b; }
+    public Colour(double r, double g, double b) {
+        R = r;
+        G = g;
+        B = b;
+    }
 
         public Colour(string str)
         {
@@ -17,21 +21,21 @@ namespace RayTracer
             B = double.Parse(nums[2]);
         }
 
-        public static Colour operator *(double n, Colour v)
+        public Colour MultiplyBy(double n)
         {
-            return new Colour(n * v.R, n * v.G, n * v.B);
+            return new Colour(n * R, n * G, n * B);
         }
-        public static Colour operator *(Colour v1, Colour v2)
+        public Colour MultiplyBy(Colour c2)
         {
-            return new Colour(v1.R * v2.R, v1.G * v2.G, v1.B * v2.B);
+            return new Colour(R * c2.R, G * c2.G, B * c2.B);
         }
-        public static Colour operator +(Colour v1, Colour v2)
+        public Colour Plus(Colour c2)
         {
-            return new Colour(v1.R + v2.R, v1.G + v2.G, v1.B + v2.B);
+            return new Colour(R + c2.R, G + c2.G, B + c2.B);
         }
-        public static Colour operator -(Colour v1, Colour v2)
+        public Colour Minus(Colour c2)
         {
-            return new Colour(v1.R - v2.R, v1.G - v2.G, v1.B - v2.B);
+            return new Colour(R - c2.R, G - c2.G, B - c2.B);
         }
 
         private byte ToByte(double d)
@@ -60,5 +64,24 @@ namespace RayTracer
         public static readonly Colour Yellow = new Colour(1, 1, 0);
         public static readonly Colour White = new Colour(1, 1, 1);
         public static readonly Colour Black = new Colour(0, 0, 0);
+
+        #region Operators
+        public static Colour operator *(double n, Colour c1)
+        {
+            return c1.MultiplyBy(n);
+        }
+        public static Colour operator *(Colour c1, Colour c2)
+        {
+            return c1.MultiplyBy(c2);
+        }
+        public static Colour operator +(Colour c1, Colour c2)
+        {
+            return c1.Plus(c2);
+        }
+        public static Colour operator -(Colour c1, Colour c2)
+        {
+            return c1.Minus(c2);
+        }
+        #endregion
     }
 }
