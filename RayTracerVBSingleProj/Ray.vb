@@ -6,6 +6,6 @@
 
     Public Sub New(ByVal start As Vector3, ByVal dir As Vector3)
         Me.Start = start
-        Me.Dir = dir
+        Me.Dir = dir.Normalized()
     End Sub
 End Class
