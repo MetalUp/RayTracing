@@ -54,9 +54,7 @@
     Public Shared Operator -(a As Vector3, b As Vector3) As Vector3
         Return a.Minus(b)
     End Operator
-    Public Shared Operator *(a As Vector3, b As Vector3) As Vector3
-        Return a.CrossProduct(b)
-    End Operator
+
     Public Shared Operator *(a As Vector3, b As Double) As Vector3
         Return a.ScalarMultiply(b)
     End Operator

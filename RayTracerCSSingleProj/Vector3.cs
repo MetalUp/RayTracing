@@ -74,11 +74,6 @@ namespace RayTracer
             return a.Minus(b);
         }
 
-        public static Vector3 operator *(Vector3 a, Vector3 b)
-        {
-            return a.CrossProduct(b);
-        }
-
         public static Vector3 operator *(Vector3 a, double b)
         {
             return a.ScalarMultiply(b);
